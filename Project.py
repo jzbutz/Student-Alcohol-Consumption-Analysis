@@ -45,7 +45,29 @@ class Student:
         self.absence.pop(0)
         self.finalGrade.pop(0)
         
-        print(self.failure)
-
+    
+    def calculate_averages(self):
+        """
+        A method for calculating the average absences for students with a combined WALC/DALC rating of 5 or higher
+        """
+        
+        #index length 394
+        index = 0
+        number = 0
+        highConsumptionAbsence = []
+        
+        while index < 395:
+            if ((int(self.studentDalc[index]) + int(self.studentWalc[index])) >= 5):
+                number = int(self.studentDalc[index])
+                number = number + int(self.studentWalc[index])
+                highConsumptionAbsence.append(int(self.absence[index]))
+                index = index + 1
+            elif ((int(self.studentDalc[index]) + int(self.studentWalc[index])) < 5):
+                index = index + 1
+            else:
+                print(highConsumptionAbsence)
+                return highConsumptionAbsence
+    
 if __name__ == "__main__":
     student = Student()
+    student.calculate_averages()
