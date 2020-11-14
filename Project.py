@@ -1,6 +1,6 @@
 """
-Name: Jonathan Butz
-Directory ID: jzbutz
+Name: Jonathan Butz && David Lee
+Directory ID: jzbutz && *****
 Date: 2020-11-08
 Assignment: Final Project
 """
@@ -61,6 +61,7 @@ class Student:
                 number = int(self.studentDalc[index])
                 number = number + int(self.studentWalc[index])
                 highConsumptionAbsence.append(self.absence[index])
+                print(highConsumptionAbsence)
                 index = index + 1
             elif ((int(self.studentDalc[index]) + int(self.studentWalc[index])) < 5):
                 index = index + 1
