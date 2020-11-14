@@ -13,11 +13,11 @@ class Student:
     """A class for storing the data of all students found in the dataset.
     
     Attributes:
-        failure: a list of integers representing number of failures for each student.
-        studentDalc: a list of integers representing the workday alcohol consumption for each student.
-        studentWalc: a list of integers representing the weekend alcohol consumption for each student.
-        absence: a list of integers representing the number of school absences for each student (from 0 to 93).
-        finalGrade: a list of integers  representing the final grade for each student (from 0 to 20).
+        failure: a list of strings representing number of failures for each student.
+        studentDalc: a list of strings representing the workday alcohol consumption for each student.
+        studentWalc: a list of strings representing the weekend alcohol consumption for each student.
+        absence: a list of strings representing the number of school absences for each student (from 0 to 93).
+        finalGrade: a list of strings  representing the final grade for each student (from 0 to 20).
     """
     def __init__(self):
         """
@@ -60,7 +60,7 @@ class Student:
             if ((int(self.studentDalc[index]) + int(self.studentWalc[index])) >= 5):
                 number = int(self.studentDalc[index])
                 number = number + int(self.studentWalc[index])
-                highConsumptionAbsence.append(int(self.absence[index]))
+                highConsumptionAbsence.append(self.absence[index])
                 index = index + 1
             elif ((int(self.studentDalc[index]) + int(self.studentWalc[index])) < 5):
                 index = index + 1
