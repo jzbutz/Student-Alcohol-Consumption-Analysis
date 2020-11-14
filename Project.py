@@ -45,7 +45,7 @@ class Student:
         self.absence.pop(0)
         self.finalGrade.pop(0)
         
-        print(self.failure)
+        print(self.finalGrade)
 
 if __name__ == "__main__":
     student = Student()
