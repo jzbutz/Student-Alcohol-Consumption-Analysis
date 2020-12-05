@@ -4,73 +4,30 @@ Directory ID: jzbutz && *****
 Date: 2020-11-08
 Assignment: Final Project
 """
-
 import pandas as pd
 import re 
 import csv
 import sys
-print(sys.version_info)
 
-class Student:
-    """A class for storing the data of all students found in the dataset.
+def main():
+    df = pd.read_csv('smath.csv')
+    print(df["Dalc"].mean())
+    print(df["Walc"].mean())
+    df_cond = df[["Dalc", "Walc", "absences", "failures", "G3"]]
     
-    Attributes:
-        failure: a list of strings representing number of failures for each student.
-        studentDalc: a list of strings representing the workday alcohol consumption for each student.
-        studentWalc: a list of strings representing the weekend alcohol consumption for each student.
-        absence: a list of strings representing the number of school absences for each student (from 0 to 93).
-        finalGrade: a list of strings  representing the final grade for each student (from 0 to 20).
-    """
-    def __init__(self):
-        """
-        Initializes a Student object. 
-        """
-        self.failure = []
-        self.studentDalc = []
-        self.studentWalc = []
-        self.absence = []
-        self.finalGrade = []
-        
-        file = open('smath.csv', 'r', encoding="utf8")
-        spreadsheet = csv.reader(file)
-        for row in spreadsheet: 
-            self.failure.append(row[14])
-            self.studentDalc.append(row[26])
-            self.studentWalc.append(row[27])
-            self.absence.append(row[29])
-            self.finalGrade.append(row[32])
-        file.close()
-        
-        self.failure.pop(0)
-        self.studentDalc.pop(0)
-        self.studentWalc.pop(0)
-        self.absence.pop(0)
-        self.finalGrade.pop(0)
-        
+    #I am only interested in students with DALC and WALC higher than the mean
+    df_DWalc = df_cond[(df["Walc"] > df["Walc"].mean()) & (df["Dalc"] > df["Dalc"].mean())]
+    #print(df_DWalc)
+    print(round(df_DWalc["failures"].mean(), 2))
+    print(round(df_DWalc["absences"].mean(),2))
+    print(round(df_DWalc["G3"].mean(), 2))
     
-    def calculate_averages(self):
-        """
-        A method for calculating the average absences for students with a combined WALC/DALC rating of 5 or higher
-        """
-        
-        #index length 394
-        index = 0
-        number = 0
-        highConsumptionAbsence = []
-        
-        while index < 395:
-            if ((int(self.studentDalc[index]) + int(self.studentWalc[index])) >= 5):
-                number = int(self.studentDalc[index])
-                number = number + int(self.studentWalc[index])
-                highConsumptionAbsence.append(self.absence[index])
-                print(highConsumptionAbsence)
-                index = index + 1
-            elif ((int(self.studentDalc[index]) + int(self.studentWalc[index])) < 5):
-                index = index + 1
-            else:
-                print(highConsumptionAbsence)
-                return highConsumptionAbsence
-    
+    #I am only interested in students with DALC and WALC lower than the mean
+    df_DWalcLow = df_cond[(df["Walc"] <= df["Walc"].mean()) & (df["Dalc"] <= df["Dalc"].mean())]
+    #print(df_DWalcLow)
+    print(round(df_DWalcLow["failures"].mean(), 2))
+    print(round(df_DWalcLow["absences"].mean(),2))
+    print(round(df_DWalcLow["G3"].mean(), 2))
+
 if __name__ == "__main__":
-    student = Student()
-    student.calculate_averages()
+    main()
