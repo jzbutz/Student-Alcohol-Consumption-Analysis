@@ -13,7 +13,7 @@ def main():
     df = pd.read_csv('smath.csv')
     print(df["Dalc"].mean())
     print(df["Walc"].mean())
-    df_cond = df[["Dalc", "Walc", "absences", "failures", "G3"]]
+    df_cond = df[["Dalc", "Walc", "absences", "failures", "G3", "Pstatus", "famsup", "internet"]]
     
     #I am only interested in students with DALC and WALC higher than the mean
     df_DWalc = df_cond[(df["Walc"] > df["Walc"].mean()) & (df["Dalc"] > df["Dalc"].mean())]
@@ -28,6 +28,30 @@ def main():
     print(round(df_DWalcLow["failures"].mean(), 2))
     print(round(df_DWalcLow["absences"].mean(),2))
     print(round(df_DWalcLow["G3"].mean(), 2))
-
+    
+    df_Pstatus = df_cond[(df["Pstatus"] == "A")]
+    print(df_Pstatus)
+    print(round(df_Pstatus["Dalc"].mean(), 2))
+    print(round(df_Pstatus["Walc"].mean(), 2))
+    print(round(df_Pstatus["G3"].mean(), 2))
+    
+    df_Pstatus2 = df_cond[(df["Pstatus"] == "T")]
+    print(df_Pstatus2)
+    print(round(df_Pstatus2["Dalc"].mean(), 2))
+    print(round(df_Pstatus2["Walc"].mean(), 2))
+    print(round(df_Pstatus2["G3"].mean(), 2))
+    
+    df_cond2 = df_cond[(df["internet"] == "no") & (df["famsup"] == "no")]
+    print(df_cond2)
+    print(round(df_cond2["Dalc"].mean(), 2))
+    print(round(df_cond2["Walc"].mean(), 2))
+    print(round(df_cond2["G3"].mean(), 2))
+    
+    df_cond3 = df_cond[((df["Walc"] <= df["Walc"].mean()) & (df["Dalc"] <= df["Dalc"].mean()) & (df["internet"] == "yes") & (df["famsup"] == "yes") & (df["Pstatus"] == "T"))]
+    print(df_cond3)
+    print(round(df_cond3["Dalc"].mean(), 2))
+    print(round(df_cond3["Walc"].mean(), 2))
+    print(round(df_cond3["G3"].mean(), 2))
+    
 if __name__ == "__main__":
     main()
