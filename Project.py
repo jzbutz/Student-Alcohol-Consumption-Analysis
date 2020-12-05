@@ -5,9 +5,11 @@ Date: 2020-11-08
 Assignment: Final Project
 """
 
+import pandas as pd
 import re 
 import csv
 import sys
+print(sys.version_info)
 
 class Student:
     """A class for storing the data of all students found in the dataset.
