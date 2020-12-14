@@ -12,7 +12,6 @@ from GUI import Menu
 
 def main(userInput2):
     userInput = int(userInput2)
-    
     df = pd.read_csv('smath.csv')
     
     df_cond = df[["Dalc", "Walc", "absences", "failures", "G3", "Pstatus", "famsup", "internet"]]

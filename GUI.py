@@ -27,6 +27,12 @@ class Menu:
         print("5. Exit the program.")
         self.input = input("Please enter your choice: ")
         
+        if(self.input == "1"):
+            return int(self.input)
+        
+        if(self.input == "2"):
+            return int(self.input)
+        
         if(self.input == "3"):
             print("Please select from the following options for information on students with higher than average DALC and WALC.")
             print("1. Average number of class previous class failures")
@@ -34,19 +40,22 @@ class Menu:
             print("3. Average final grade, from 0 to 20.")
             self.input = input("Please enter your choice: ")
             self.input = int(self.input) + 5
+            return self.input
             
-        elif(self.input == "4"):
+        if(self.input == "4"):
             print("Please select from the following options for information on students with lower than average DALC and WALC.")
             print("1. Average number of class previous class failures")
             print("2. Average number of absences.")
             print("3. Average final grade, from 0 to 20.")
             self.input = input("Please enter your choice: ")
             self.input = int(self.input) + 8
+            return self.input
             
-        elif(self.input == "5"):
+        if(self.input == "5"):
             self.input = 0
+            return self.input
         
         else:
             self.input = 3
+            return self.input
         
-        return self.input
