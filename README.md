@@ -1,4 +1,12 @@
 # dataset
+This program will help you analyze the a dataset on high school exam performance.
+
+To use this program, you must have pandas, seaborn, numpy, and matplotlib installed.
+
+You must have the files and the smath.csv file in the same directory.
+
+Run the Project.py file from the terminal. python3 Project.py.
+
 examine student performances on high school exams
 
 ATTRIBUTES OF CSV FILE
