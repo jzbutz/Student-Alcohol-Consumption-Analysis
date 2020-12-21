@@ -1,6 +1,6 @@
 """
 Name: Jonathan Butz && David Lee
-Directory ID: jzbutz && *****
+Directory ID: jzbutz && dlee2424
 Date: 2020-11-08
 Assignment: Final Project
 """
@@ -8,9 +8,20 @@ import pandas as pd
 import re 
 import csv
 import sys
+import seaborn as sns
+import matplotlib.pyplot as plt
 from GUI import Menu
 
 def main(userInput2):
+    """Read in csv data. Use pandas to subset data.
+    Receive user input from a menu. Return value of subset chosen by user.
+    
+    Attr:
+        userInput(int): received user input
+        
+    Returns:
+        value of the subset chosen by the user & boolean to end or continue the program.
+    """
     userInput = int(userInput2)
     df = pd.read_csv('smath.csv')
     
@@ -21,27 +32,6 @@ def main(userInput2):
     
     #I am only interested in students with DALC and WALC lower than the mean
     df_DWalcLow = df_cond[(df["Walc"] <= df["Walc"].mean()) & (df["Dalc"] <= df["Dalc"].mean())]
-    
-    
-    #df_Pstatus = df_cond[(df["Pstatus"] == "A")]
-    #print(round(df_Pstatus["Dalc"].mean(), 2))
-    #print(round(df_Pstatus["Walc"].mean(), 2))
-    #print(round(df_Pstatus["G3"].mean(), 2))
-    
-    #df_Pstatus2 = df_cond[(df["Pstatus"] == "T")]
-    #print(round(df_Pstatus2["Dalc"].mean(), 2))
-    #print(round(df_Pstatus2["Walc"].mean(), 2))
-    #print(round(df_Pstatus2["G3"].mean(), 2))
-    
-    #df_cond2 = df_cond[(df["internet"] == "no") & (df["famsup"] == "no")]
-    #print(round(df_cond2["Dalc"].mean(), 2))
-    #print(round(df_cond2["Walc"].mean(), 2))
-    #print(round(df_cond2["G3"].mean(), 2))
-    
-    #df_cond3 = df_cond[((df["Walc"] <= df["Walc"].mean()) & (df["Dalc"] <= df["Dalc"].mean()) & (df["internet"] == "yes") & (df["famsup"] == "yes") & (df["Pstatus"] == "T"))]
-    #print(round(df_cond3["Dalc"].mean(), 2))
-    #print(round(df_cond3["Walc"].mean(), 2))
-    #print(round(df_cond3["G3"].mean(), 2))
     
     if(userInput == 0):
         print("Ending the program.")
@@ -82,10 +72,34 @@ def main(userInput2):
         print("The average final grade is", round(df_DWalcLow["G3"].mean(), 2))
         input("Press any key to continue...")
         return False
+    if(userInput == 12):
+        plot1 = sns.lmplot(x = "Dalc", y = "G3", data = df)
+        plot1.set(xlabel = "Weekday Alcohol Consumption", ylabel = "Final Grade", xlim=(0,6), ylim=(0,21))
+        plt.show()
+        input("Press any key to continue...")
+        return False
+    if(userInput == 13):
+        plot2 = sns.lmplot(x = "Walc", y = "G3", data = df)
+        plot2.set(xlabel = "Weekend Alcohol Consumption", ylabel = "Final Grade", xlim=(0,6), ylim=(0,21))
+        plt.show()
+        input("Press any key to continue...")
+        return False
+    if(userInput == 14):
+        df.hist("Dalc")
+        plt.suptitle("Weekday Alcohol Consumption")
+        plt.show()
+        input("Press any key to continue...")
+        return False
+    if(userInput == 15):
+        df.hist("Walc")
+        plt.suptitle("Weekend Alcohol Consumption")
+        plt.show()
+        input("Press any key to continue...")
+        return False      
     
 if __name__ == "__main__":
-    finished = False
+    finished = False #boolean initializer for while loop
     menu = Menu()
     while(finished == False):
-        userInput2 = menu.navigate()
-        finished = main(userInput2)
+        userInput2 = menu.navigate() #navigate method from menu class
+        finished = main(userInput2) #run main program, pass in user input, return boolean
