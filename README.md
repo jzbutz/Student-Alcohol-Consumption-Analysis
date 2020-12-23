@@ -1,5 +1,5 @@
 # dataset
-This program will help you analyze the a dataset on high school exam performance.
+This program will help you analyze a dataset on high school exam performance.
 
 To use this program, you must have pandas, seaborn, numpy, and matplotlib installed.
 
