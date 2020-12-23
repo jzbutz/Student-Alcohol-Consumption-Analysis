@@ -1,9 +1,3 @@
-"""
-Name: Jonathan Butz && David Lee
-Directory ID: jzbutz && dlee2424
-Date: 2020-11-08
-Assignment: Final Project
-"""
 import pandas as pd
 import re 
 import csv
