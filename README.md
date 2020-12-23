@@ -5,7 +5,7 @@ To use this program, you must have pandas, seaborn, numpy, and matplotlib instal
 
 You must have the files and the smath.csv file in the same directory.
 
-Run the Project.py file from the terminal. python3 Project.py.
+Run the Dataframes.py file from the terminal. python3 Dataframes.py.
 
 examine student performances on high school exams
 
